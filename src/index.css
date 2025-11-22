@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Minimalist Black & White with Electric Blue Accent */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 100%;
+
+    /* Electric Blue Accent */
+    --primary: 195 100% 50%;
+    --primary-foreground: 0 0% 0%;
+
+    /* Platinum Silver */
+    --secondary: 0 0% 75%;
+    --secondary-foreground: 0 0% 0%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+
+    /* Same as primary for consistency */
+    --accent: 195 100% 50%;
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 10%;
+    --ring: 195 100% 50%;
+
+    --radius: 0.25rem;
+
+    /* Minimal Glows */
+    --glow-accent: 0 0 30px hsl(195 100% 50% / 0.3);
+    --glow-subtle: 0 0 10px hsl(0 0% 100% / 0.1);
+    
+    /* Glassmorphism */
+    --glass-border: hsla(0 0% 100% / 0.1);
+    --glass-bg: hsla(0 0% 5% / 0.6);
+    
+    --sidebar-background: 0 0% 0%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 195 100% 50%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 195 100% 50%;
+  }
+
+  .dark {
+    /* Same as root for monochrome consistency */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 195 100% 50%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 75%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 195 100% 50%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 15%;
+    --input: 0 0% 10%;
+    --ring: 195 100% 50%;
+    --sidebar-background: 0 0% 0%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 195 100% 50%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 195 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    overflow-x: hidden;
+  }
+  
+  /* Subtle glow utility classes */
+  .glow-accent {
+    box-shadow: var(--glow-accent);
+  }
+  
+  .glow-subtle {
+    box-shadow: var(--glow-subtle);
+  }
+  
+  /* Minimal glassmorphism card */
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+  }
+  
+  /* Thin border accent */
+  .accent-border {
+    position: relative;
+    background: hsl(var(--card));
+  }
+  
+  .accent-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: hsl(var(--primary));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+  
+  /* Electric blue accent text */
+  .accent-text {
+    color: hsl(var(--primary));
+  }
+  
+  /* Scroll animation reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  
+  /* White cursor */
+  * {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="white"/></svg>') 12 12, auto;
+  }
+  
+  button, a {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12" fill="white"/></svg>') 16 16, pointer;
+  }
+}
